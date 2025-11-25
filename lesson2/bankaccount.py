@@ -12,7 +12,29 @@
 
 
 class BankAccount:
-    pass
+    def __init__(self, balance: float):
+        self._balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
+
+    def deposit(self, amount: float):
+        if amount <= 0:
+            raise ValueError("Сумма должна быть положительной")
+        self._balance += amount
+
+    def withdraw(self, amount: float):
+        if amount <= 0:
+            raise ValueError("Сумма должна быть положительной")
+        if amount > self._balance:
+            raise ValueError("Недостаточно средств")
+        self._balance -= amount
+
+    def close(self):
+        remaining_balance = self._balance
+        self._balance = 0
+        return remaining_balance
 
 
 # код для проверки 
