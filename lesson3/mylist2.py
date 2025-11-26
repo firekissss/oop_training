@@ -9,10 +9,32 @@
 
 
 class MyList2:
-    pass
+    def __init__(self, data):
+        self.data = list(data)
+
+    def __iter__(self):
+        return MyList2._Iterator(self.data)
+
+    def __getitem__(self, index):
+        return self.data[index]
+
+    class _Iterator:
+        def __init__(self, data):
+            self._data = data
+            self._index = 0
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            if self._index >= len(self._data):
+                raise StopIteration
+            value = self._data[self._index]
+            self._index += 1
+            return value
 
 
-# код для проверки 
+# код для проверки
 my_list = MyList2([1, 2, 3])
 for i in my_list:
     print(i)  # 1 2 3
