@@ -10,11 +10,26 @@ class Employee:
     def __init__(self, pay):
         self.pay = pay
 
+    def __add__(self, other):
+        if isinstance(other, Employee):
+            return self.pay+other.pay
+        if isinstance(other, int | float):
+            return self.pay+other
+        else:
+            raise TypeError("Cant make the sum of given objects")
 
 class Client:
 
     def __init__(self, pay):
         self.pay = pay
+
+    def __add__(self, other):
+        if isinstance(other, Employee):
+            return other.pay
+        if isinstance(other, int | float):
+            return other
+        else:
+            raise TypeError("Cant make the sum of given objects")
 
 
 class Developer(Employee):
@@ -33,3 +48,5 @@ for user in users:
 
 print(total_salary)
 # Вывод: 150000
+
+# максимально непонятное и неоднозначное задание...

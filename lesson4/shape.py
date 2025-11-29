@@ -1,5 +1,5 @@
 """
-Напишите класс Shape, представляющий геометрическую фигуру, имеющий следующие методы:
+Напишите класс Shape, представляющий геометрическую фигуру, и имеющий следующие методы:
 
 - __init__(self, name): конструктор, принимающий имя геометрической фигуры;
 - area(self): метод, который вычисляет площадь геометрической фигуры.
@@ -17,12 +17,35 @@
 
 
 class Shape:
-    pass
+    def __init__(self, name):
+        self.name = name
+
+    def area(self):
+        return None
+
+
+class Rectangle(Shape):
+    def __init__(self, name, width, height):
+        super().__init__(name)
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Triangle(Shape):
+    def __init__(self, name, base, height):
+        super().__init__(name)
+        self.base = base
+        self.height = height
+
+    def area(self):
+        return 0.5 * self.base * self.height
 
 
 # код для проверки 
 shape = Shape("Shape")
-print(shape.area())  # 0
+print(shape.area())  # 0, но лучше None
 
 rect = Rectangle("Rectangle", 5, 10)
 print(rect.area())  # 50
